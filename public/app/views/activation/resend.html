@@ -1,0 +1,35 @@
+<div>
+    <h1 class="text-center">
+        Resend activation link
+    </h1>
+</div>
+
+<form ng-submit="resend.checkCredentials(loginData)">
+    <label>Username :</label>
+    <input class="form-control" name="username" type="text" placeholder="Enter username" ng-model="resend.loginData.username">
+    <br>
+
+    <label>Password :</label>
+    <input class="form-control" name="password" type="password" placeholder="Enter password" ng-model="resend.loginData.password">
+    <br>
+
+    <button type="submit" class="btn btn-primary" ng-show="!resend.linksent">Send link </button>
+</form>
+<br>
+
+<div class="jumbotron text-center" ng-show="resend.loading">
+    <span class="glyphicon glyphicon-repeat spinner"></span>
+    <p> Loading..... </p>
+</div>
+
+<div class="row show-hide-message">
+    <div class="alert alert-success" ng-show="resend.successMsg">
+        <strong> Success! </strong> {{ resend.successMsg  }}
+    </div>
+</div>
+
+<div class="row show-hide-message">
+    <div class="alert alert-danger" ng-show="resend.errorMsg">
+        <strong> Oops! </strong> {{ resend.errorMsg  }}
+    </div>
+</div>

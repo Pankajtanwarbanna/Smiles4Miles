@@ -1,0 +1,40 @@
+
+<style>
+    label {
+        font-size: 16px;
+        color: white;
+        margin-left: 1vh;
+    }
+</style>
+<div class="text-center">
+    <h1>
+        Donate Raw Items
+    </h1>
+</div>
+<br>
+<div>
+    <form ng-submit="donateraw.addData(rawfoodData)">
+        <label>Item Name :</label>
+        <input class="form-control" type="text" placeholder="Enter Item name" ng-model="donateraw.rawfoodData.name" required>
+        <label>Item Quantity (In kg) :</label>
+        <input class="form-control" type="text" placeholder="Enter Item quantity" ng-model="donateraw.rawfoodData.quantity" required>
+        <label>City :</label>
+        <input class="form-control" type="text" placeholder="Enter city" ng-model="donateraw.rawfoodData.city" required>
+        <label>State :</label>
+        <input class="form-control" type="text" placeholder="Enter state" ng-model="donateraw.rawfoodData.state" required>
+        <button> Donate </button>
+    </form>
+    <div class="jumbotron text-center" ng-show="donateraw.loading">
+        <span class="glyphicon glyphicon-request fa-spinner"></span>
+        <p>Loading....</p>
+    </div>
+
+    <div class="row show-hide message" ng-show="donateraw.successMsg">
+        <div class="alert alert-success">{{donateraw.successMsg}}</div>
+
+    </div>
+
+    <div class="row show-hide message" ng-show="donateraw.errorMsg">
+        <div class="alert alert-danger">{{donateraw.errorMsg}}</div>
+</div>
+

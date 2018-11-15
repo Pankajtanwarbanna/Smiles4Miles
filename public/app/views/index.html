@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="/">
+    <meta charset="UTF-8">
+    <title> Smiles for Miles</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <script src="app/routes.js"></script>
+    <script src="app/app.js"></script>
+
+    <script src="app/controllers/userCtrl.js"></script>
+    <script src="app/controllers/mainCtrl.js"></script>
+    <script src="app/controllers/emailCtrl.js"></script>
+
+    <script src="app/services/userServices.js"></script>
+    <script src="app/services/authServices.js"></script>
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- CSS
+================================================== -->
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/vendor.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+
+    <!-- script
+    ================================================== -->
+    <script src="assets/js/modernizr.js"></script>
+    <script src="assets/js/pace.min.js"></script>
+
+    <!-- favicons
+    ================================================== -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+</head>
+
+
+<body style="overflow-y: auto;" ng-app="userApp" ng-controller="mainCtrl as main">
+
+    <!--
+
+    -->
+    <!-- home
+        ================================================== -->
+    <main class="s-home--slides" >
+
+        <div class="home-slider">
+            <div class="home-slider-img" style="background-image: url(assets/images/bg1.jpg);"></div>
+            <div class="home-slider-img" style="background-image: url(assets/images/home.jpg);"></div>
+            <div class="home-slider-img" style="background-image: url(assets/images/bg7.jpg);"></div>
+        </div>
+        <nav style="border-color: transparent;background-color: transparent;" class="navbar navbar-inverse navbar-fixed-top">
+            <div style="padding-top: 10px;padding-bottom: 6px" class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a style="color:red;font-weight: bold;font-family: Consolas;font-size: 3vh" class="navbar-brand" href="/">Smiles for Miles</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a ng-show="!main.isLoggedIn" style="color:white;" href="/about"><span class="glyphicon glyphicon-user"></span> About</a></li>
+                        <li><a ng-show="!main.isLoggedIn" href="/register" style="color:white;"><span class="glyphicon glyphicon-log-in"></span> Sign Up</a></li>
+                        <li><a ng-show="!main.isLoggedIn" href="/login" style="color:white;"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        <li><a ng-show="main.isLoggedIn" href="/team" style="color:white;"><span class="glyphicon glyphicon-user"></span> Team</a></li>
+                        <li><a ng-show="main.isLoggedIn" href="/profile" style="color:white;"><span class="glyphicon glyphicon-user"></span>  Hello {{main.username}}</a></li>
+                        <li><a style="color:white;" href="/cart" ng-show="main.isLoggedIn && !main.isReceiver"><span class="glyphicon glyphicon-log-in"></span>  Cart</a></li>
+                        <li><a style="color:white;" href="#" ng-click="main.logout();" ng-show="main.isLoggedIn"><span class="glyphicon glyphicon-log-in"></span>  Logout</a></li>
+                    </ul>
+                </div>
+                <!--<a href="/donators" ng-show="main.isLoggedIn">Donators</a>
+                <a href="/receivers" ng-show="main.isLoggedIn">Receivers</a>
+                <a href="/volunteers" ng-show="main.isLoggedIn">Volunteers</a>-->
+            </div>
+        </nav>
+
+        <div class="home-content container">
+            <div style="margin-right: 70vh">
+                <div ng-show="main.isHomePage">
+                    <h1 style="font-size:11vh;font-weight: bold;font-family: inherit;margin-top: 10vh;padding-left: 4vh">Donate</h1>
+                    <h2 style="color: white;font-size:7vh;font-weight: bold;margin-top: -14px;font-family: inherit;padding-left: 4vh">4 a better world</h2>
+                    <p style="color: white;font-size:3vh;margin-top: 4vh;font-family: inherit;padding-left: 4vh">"I slept and dreamt that life was joy. I awoke and saw that life was service. I acted and behold, service was joy."</p>
+                    <p style="color: white;font-size:2.5vh;margin-top: -4vh;font-family: inherit;text-align: right;margin-right: 5vh;padding-bottom: 2vh">- Rabindranath Tagore</p>
+                    <div ng-show="main.isLoggedIn">
+                        <a href="/donatenow"><button style="margin-left: 5vh"class="bg-primary" ng-show="main.isDonator">Donate Now</button></a>
+                        <a href="/buydonate"><button style="margin-left: 1vh"class="bg-primary" ng-show="main.isDonator">Buy and Donate</button></a>
+                        <a href="/donaterequests"><button style="margin-left: 5vh"class="bg-primary" class="bg-primary" ng-show="main.isReceiver">Check for Donation requests</button></a>
+                        <a href="/accepteddonaterequests"><button style="margin-left: 5vh" class="bg-primary" ng-show="main.isReceiver">Accepted Donation requests</button></a>
+                    </div>
+                    <div ng-show="!main.isLoggedIn">
+                        <a href="/register"><button style="margin-left: 5vh"class="bg-primary">Join Us !!!!</button></a>
+                    </div>
+                </div>
+            </div>
+            <div class="ng-view"></div>
+        </div>
+
+        <!--
+        <div class="home-content">
+
+            <div class="home-logo">
+                <a href="index-slides.html">
+                    <img src="assets/images/logo.svg" alt="Homepage">
+                </a>
+            </div>
+
+            <div class="row home-content__main">
+
+                <div class="col-eight home-content__text pull-right">
+                    <h3>Welcome to Count</h3>
+
+                    <h1>
+                        We are currently working <br>
+                        on a new super awesome <br> website.
+                    </h1>
+
+                    <p>
+                        Nulla porttitor accumsan tincidunt. Nulla quis lorem ut libero malesuada feugiat.
+                        Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus.
+                        Pellentesque in ipsum id orci porta dapibus. Nulla quis lorem ut libero malesuada feugiat.
+                    </p>
+
+                    <div class="home-content__subscribe">
+                        <form id="mc-form" class="group" novalidate="true">
+                            <input type="email" value="" name="EMAIL" class="email" id="mc-email" placeholder="Email Address" required="">
+                            <input type="submit" name="subscribe" value="Notify Me">
+                            <label for="mc-email" class="subscribe-message"></label>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-four home-content__counter">
+                    <h3>Launching In</h3>
+
+                    <div class="home-content__clock">
+                        <div class="top">
+                            <div class="time days">
+                                325
+                                <span>Days</span>
+                            </div>
+                        </div>
+                        <div class="time hours">
+                            09
+                            <span>H</span>
+                        </div>
+                        <div class="time minutes">
+                            54
+                            <span>M</span>
+                        </div>
+                        <div class="time seconds">
+                            30
+                            <span>S</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <ul class="home-social">
+                <li>
+                    <a href="#0"><i class="fab fa-facebook-f" aria-hidden="true"></i><span>Facebook</span></a>
+                </li>
+                <li>
+                    <a href="#0"><i class="fab fa-twitter" aria-hidden="true"></i><span>Twiiter</span></a>
+                </li>
+                <li>
+                    <a href="#0"><i class="fab fa-instagram" aria-hidden="true"></i><span>Instagram</span></a>
+                </li>
+                <li>
+                    <a href="#0"><i class="fab fa-behance" aria-hidden="true"></i><span>Behance</span></a>
+                </li>
+                <li>
+                    <a href="#0"><i class="fab fa-dribbble" aria-hidden="true"></i><span>Dribbble</span></a>
+                </li>
+            </ul>
+
+            <div class="row home-copyright">
+                <span>Copyright Count 2018</span>
+                <span>Design by <a href="https://www.styleshout.com/">styleshout</a></span>
+            </div>
+
+
+            <div class="home-content__line"></div>
+
+        </div> <!-- end home-content -->
+
+    </main> <!-- end s-home -->
+
+
+
+    <!-- preloader
+    ================================================== -->
+    <div id="preloader">
+        <div id="loader">
+            <div class="line-scale-pulse-out">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <br>
+                <h1 style="color: #d3007d;">Smiles for Miles</h1>
+            </div>
+        </div>
+    </div>
+
+    <!-- Java Script
+    ================================================== -->
+    <script src="assets/js/jquery-3.2.1.min.js"></script>
+    <script src="assets/js/plugins.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+</html>

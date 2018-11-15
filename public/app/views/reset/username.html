@@ -1,0 +1,31 @@
+<div>
+    <h1 class="text-center">
+        Reset Username
+    </h1>
+</div>
+
+<form ng-submit="username.resetUsername(loginData)">
+    <label>Email :</label>
+    <input class="form-control" name="email" type="text" placeholder="Enter email" ng-model="username.loginData.email">
+    <br>
+
+    <button type="submit" class="btn btn-primary" ng-show="!username.sent">Send username </button>
+</form>
+<br>
+
+<div class="jumbotron text-center" ng-show="username.loading">
+    <span class="glyphicon glyphicon-repeat spinner"></span>
+    <p> Loading..... </p>
+</div>
+
+<div class="row show-hide-message">
+    <div class="alert alert-success" ng-show="username.successMsg">
+        <strong> Success! </strong> {{ username.successMsg  }}
+    </div>
+</div>
+
+<div class="row show-hide-message">
+    <div class="alert alert-danger" ng-show="username.errorMsg">
+        <strong> Oops! </strong> {{ username.errorMsg  }}
+    </div>
+</div>

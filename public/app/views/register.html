@@ -1,0 +1,53 @@
+
+<style>
+    label {
+        font-size: 16px;
+        color: white;
+        margin-left: 1vh;
+    }
+</style>
+<div class="text-center">
+    <h1>Join Us !!</h1>
+</div>
+
+<form ng-submit="register.regUser(regData)">
+    <label>Name :</label>
+    <input class="form-control" type="text" name="name" placeholder="Enter your name" ng-model="register.regData.name"><br>
+    <label>Username :</label>
+    <input class="form-control" type="text" name="username" placeholder="Enter your username" ng-model="register.regData.username" ng-blur="register.checkUsername(regData)"><br>
+    <label>Password :</label>
+    <input class="form-control" type="password" name="password" placeholder="Enter password" ng-model="register.regData.password"><br>
+    <label>Email :</label>
+    <input class="form-control" type="text" name="email" placeholder="Enter your e-mail"  ng-model="register.regData.email"><br>
+    <label>Name of the institution:</label>
+    <input class="form-control" type="text" name="institute" placeholder="Enter the name of the institution"  ng-model="register.regData.institute"><br>
+    <label> Select Role :</label>
+    <select style="width: 100%;" ng-model="register.regData.role">
+        <option value="donator">Donator</option>
+        <option value="receiver"> Receiver </option>
+        <option value="volunteer"> Volunteer </option>
+    </select>
+    <button class="btn-dark" type="submit">Register</button>
+</form>
+
+
+<!--<input class="form-control" type="password" name="firstpassword" placeholder="First password" ng-model="firstPassword"><br>-->
+<!--<input class="form-control" type="password" name="confirmpassword" match="{{[firstPassword]}}" ng-model="confirm" placeholder="Confirm password"><br>-->
+<!--<p ng-show="!confirmed">Password do not match</p>-->
+
+
+<div class="jumbotron text-center" ng-show="register.loading">
+    <span class="glyphicon glyphicon-request fa-spinner"></span>
+    <p>Loading....</p>
+</div>
+
+<div class="row show-hide message" ng-show="register.successMsg">
+    <div class="alert alert-success">{{register.successMsg}}</div>
+
+</div>
+
+<div class="row show-hide message" ng-show="register.errMsg">
+    <div class="alert alert-danger">{{register.errMsg}}</div>
+
+</div>
+

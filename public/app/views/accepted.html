@@ -1,0 +1,22 @@
+<div class="text-center">
+    <h1>
+        Accepted Donation Request
+    </h1>
+</div>
+
+<div class="row">
+    <div class="col-sm-3" ng-repeat="food in accepted.cook" style="border: 2px solid white;border-radius: 2em;padding: 1.6em;">
+        <h2> {{ food.name }} </h2>
+        <p> {{food.city }}</p>
+        <p> {{food.state }}</p>
+        <p> {{food.postedby }}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-3" ng-repeat="food in accepted.raw" style="border: 2px solid white;border-radius: 2em;padding: 1.6em;">
+        <h2 style="color: white;margin-top: 0.1em;"> {{ food.name }} </h2>
+        <p style="color: white;margin-bottom: 0px;"> City : {{food.city }}</p>
+        <p style="color: white;margin-bottom: 0px;"> State : {{food.state }}</p>
+        <p style="color: white;margin-bottom: 0px;">Posted By - {{food.postedby }}</p>
+    </div>
+</div>

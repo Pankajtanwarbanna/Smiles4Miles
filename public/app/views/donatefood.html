@@ -1,0 +1,40 @@
+
+<style>
+    label {
+        font-size: 16px;
+        color: white;
+        margin-left: 1vh;
+    }
+</style>
+<div class="text-center">
+    <h1 >
+        Donate Cooked Food
+    </h1>
+</div>
+<br>
+<div>
+    <form ng-submit="donatecookedfood.addFood(foodData);">
+        <label>Type of Meal :</label>
+        <select style="width: 100%;" ng-model="donatecookedfood.foodData.meal">
+            <option value="breakfast">Breakfast</option>
+            <option value="lunch"> Lunch </option>
+            <option value="dinner">Dinner</option>
+        </select>
+        <label>No of People it can serve :</label>
+        <input class="form-control" type="text" placeholder="Enter No of people" ng-model="donatecookedfood.foodData.people" required>
+        <label>City :</label>
+        <input class="form-control" type="text" placeholder="Enter city" ng-model="donatecookedfood.foodData.city" required>
+        <label>State :</label>
+        <input class="form-control" type="text" placeholder="Enter state" ng-model="donatecookedfood.foodData.state" required>
+        <button type="submit"> Donate </button>
+    </form>
+
+
+    <div class="row show-hide message" ng-show="donatecookedfood.successMsg">
+        <div class="alert alert-success">{{donatecookedfood.successMsg}}</div>
+    </div>
+
+    <div class="row show-hide message" ng-show="donatecookedfood.errorMsg">
+        <div class="alert alert-danger">{{donatecookedfood.errorMsg}}</div>
+    </div>
+</div>

@@ -1,0 +1,98 @@
+<div class="text-center" ng-show="cart.value > 0">
+    <h1 >
+        Cart
+    </h1>
+</div>
+
+<br>
+<div style="padding: 1em;">
+    <div class="row" ng-show="cart.value > 0">
+        <div class="col-sm-9 cart-items" style="padding: 0.6em;">
+            <div ng-repeat="item in cart.cart" style="margin-top: 15px;">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <img src="assets/images/fooditems/{{item.name}}.png" class="cart-items-img">
+                    </div>
+                    <div  class="col-sm-2">
+                        <h2 style="color: white;margin-bottom: 0px;margin-top: 0px;"> {{item.name }}</h2>
+                        <p style="color: white;margin-bottom: 0px;">Price : {{ item.price }}/- </p>
+                        <p style="background-color: #d3007d;padding: 2vh;font-size: 2vh;margin-bottom: 0px;" class="badge">{{item.tag}}</p>
+                    </div>
+                    <div class="col-sm-2">
+                        <p style="color: white;margin-top: 0px;margin-bottom: 0px;"><span class="dot"></span> In Stock</p>
+                    </div>
+                    <div class="col-sm-3">
+                        <p style="color: white;margin-top: 0px;margin-bottom: 0px;"><b>Quantity</b></p>
+                        <p style="background-color: #d3007d;padding-left:0.8em ;color: white;margin-top: 0px;" class="bedge">{{ item.count }} Item</p>
+                    </div>
+                    <div class="col-sm-3">
+                        <button style="background-color: red" ng-click="cart.removeitem(item._id);">Remove  X</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Order Summary</div>
+                <div class="panel-body">
+                    Sub Total    :    $ {{  cart.value }}
+                    <br>
+                    Taxes    :    $ 2.75
+                    <br>
+                    <b>Total Cart Value : </b> $ {{  cart.value + 2.75 }}
+                    <br>
+                    <br>
+                    <div ng-show="cart.option">
+                        <b>Pay via</b> : {{ cart.option }}
+                        <a href="/orderplaced">
+                            <button style="background-color: green;" class="btn btn-primary">Place Order</button>
+                        </a>
+                    </div>
+                    <div ng-show="!cart.option">
+                        <button style="background-color: green;" class="btn btn-primary"  data-toggle="modal" data-target="#myModal">Check Out</button>
+                    </div>
+
+                    <!-- Modal -->
+                    <div id="myModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title" style="margin-bottom: 0px;">Choose a Payment Method</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="radio">
+                                        <label><input type="radio" name="optradio" value="Paytm" ng-model="cart.option">Paytm</label>
+                                    </div>
+                                    <div class="radio">
+                                        <label><input type="radio" name="optradio" value="UPI" ng-model="cart.option">UPI</label>
+                                    </div>
+                                    <div class="radio">
+                                        <label><input type="radio" name="optradio" value="COD" ng-model="cart.option">Cash On Delivery</label>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Pay Now</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-show="cart.value==0" class="text-center" style="border: 2px solid white;border-radius: 1em;padding: 2em;">
+        <br>
+        <br>
+        <h1 style="color: #ffd900;">Empty Cart!</h1>
+        <br>
+        <br>
+        <a href="/buydonate">
+            <button class="btn btn-primary">Add items to cart</button>
+        </a>
+
+    </div>
+</div>

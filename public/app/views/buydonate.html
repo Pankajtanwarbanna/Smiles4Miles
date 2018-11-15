@@ -1,0 +1,20 @@
+<div class="text-center">
+    <h1 >
+        Buy and Donate !!
+    </h1>
+</div>
+<br>
+<div class="row show-hide message" ng-show="buydonate.successMsg">
+    <div class="alert alert-success">{{buydonate.successMsg}}</div>
+</div>
+
+<div ng-repeat="x in buydonate.item">
+    <div class="col-sm-3 panel items">
+        <img src="assets/images/fooditems/{{x.name}}.png" class="items-img">
+        <p class="items-heading">{{x.name}}</p>
+        <p class="items-price">{{x.price}}/- per {{x.quantity}} Kg</p>
+        <p style="background-color: #d3007d;padding: 2vh;font-size: 2vh" class="badge">{{x.tag}}</p>
+        <button class="items-add btn" ng-click="buydonate.addtocart(x._id);">Add to Cart</button>
+    </div>
+</div>
+

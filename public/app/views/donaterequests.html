@@ -1,0 +1,38 @@
+<style>
+    label {
+        font-size: 16px;
+        color: white;
+        margin-left: 1vh;
+    }
+</style>
+<div>
+    <h1 style="padding-bottom: 4vh" class="text-center" >
+        Donate Requests
+    </h1>
+
+    <div>
+        <label>City Wise Filter :</label>
+        <input type="text" placeholder="Enter city name" class="form-control" ng-model="searchKeyword">
+    </div>
+
+    <div class="col-sm-12 panel items" ng-repeat="x in donaterequests.cookedfood | filter : { city : searchKeyword }">
+        <p class="items-heading" style="text-transform: uppercase">{{x.meal}}</p>
+        <p class="items-price" style="font-size:2.5vh;text-transform: capitalize">{{x.city}}</p>
+        <p class="items-price" style="font-size:2.5vh;text-transform: capitalize">{{x.state}}</p>
+        <p style="width: 47%" class="items-tag text-center">Cooked Food</p>
+        <a href="/donaterequest/{{x._id}}"><button class="info-button">Know more ......</button></a>
+    </div>
+
+    <div class="col-sm-12 panel items" ng-repeat="x in donaterequests.rawfood | filter : { city : searchKeyword }">
+        <p class="items-heading" style="text-transform: uppercase">{{x.name}}</p>
+        <p class="items-price" style="font-size:2.5vh;text-transform: capitalize">{{x.city}}</p>
+        <p class="items-price" style="font-size:2.5vh;text-transform: capitalize">{{x.state}}</p>
+        <p style="width: 47%" class="items-tag text-center">Raw Food</p>
+        <a href="/donaterequest/{{x._id}}"><button class="info-button">Know more ......</button></a>
+    </div>
+
+</div>
+
+
+
+

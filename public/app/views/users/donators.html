@@ -1,0 +1,13 @@
+<div class="text-center">
+    <h1 >
+        Donators
+    </h1>
+</div>
+
+<div class="row">
+    <div class="col-sm-3" ng-repeat="person in donators.donators" style="border : 2px solid white;border-radius: 2em;padding: 1em;">
+        <img src="/assets/images/team/student.png">
+        <p style="font-size: 1.8em;color: white;margin-bottom: 0px;" class="text-center"> {{ person.name }}</p>
+        <p style="font-size: 1.0em;color: white;margin-bottom: 3px;"><span class="glyphicon glyphicon-map-marker"></span> {{ person.institute }}</p>
+    </div>
+</div>
