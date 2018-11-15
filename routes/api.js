@@ -9,8 +9,8 @@ var secret      = 'Pankaj';
 var transporter = nodemailer.createTransport({
     service : 'gmail',
     auth: {
-        user: 'smilesformilesproject@gmail.com',
-        pass: 'smilesformiles'
+        user: 'YOUR_EMAIL_ID',
+        pass: 'YOUR_PASSWORD'
     }
 });
 
